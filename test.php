@@ -1,3 +1,3 @@
 <?php
-echo "This is a test from the submodule. TEST ME"
+echo "This is a test from the submodule. TEST ME 2"
 ?>
