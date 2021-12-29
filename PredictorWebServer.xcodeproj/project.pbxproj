@@ -6,10 +6,15 @@
 	objectVersion = 55;
 	objects = {
 
+/* Begin PBXFileReference section */
+		43B1EC8F277C34EB003BFE5D /* test.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = test.php; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		43B1EC7D277C3279003BFE5D = {
 			isa = PBXGroup;
 			children = (
+				43B1EC8F277C34EB003BFE5D /* test.php */,
 			);
 			sourceTree = "<group>";
 		};
