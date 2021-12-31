@@ -1,4 +1,5 @@
 <?php
-    echo $_POST["name"];
-    echo "Test 1";
+    echo "Test 2";
+    $entityBody = file_get_contents('php://input')
+    echo $entityBody
 ?>
