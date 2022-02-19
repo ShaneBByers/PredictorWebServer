@@ -1,5 +1,5 @@
 <?php
-    echo "Test 3";
+    echo "TEST.PHP", PHP_EOL;
     $entityBody = file_get_contents('php://input');
-    echo $entityBody;
+    echo $entityBody, PHP_EOL;
 ?>
