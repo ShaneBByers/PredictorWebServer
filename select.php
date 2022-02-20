@@ -6,7 +6,7 @@
     if (!$connection->connect_error)
     {
         $sql = "SELECT ";
-        if ($body['columns'])
+        if (array_key_exists('columns', $body))
         {
             $sql = $sql . "(";
             foreach ($body['columns'] as $column)
