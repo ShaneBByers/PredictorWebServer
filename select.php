@@ -10,20 +10,17 @@
     }
     echo "Connection SUCCEEDED", PHP_EOL;
     $sql = "SELECT * FROM " . $body['tableName'];
-    $result = $connection->query($sql);
+    $query_result = $connection->query($sql);
 
-    if ($result->num_rows > 0)
+    $row_count = $query_result->num_rows;
+
+    $results_array = array();
+    while ($row = $query_result->fetch_assoc())
     {
-        $results_array = array();
-        while ($row = $result->fetch_assoc())
-        {
-            $results_array[] = $row;
-        }
-        echo json_encode($results_array);
+        $results_array[] = $row;
     }
-    else
-    {
-        echo "NO RESULTS", PHP_EOL;
-    }
+    $echo_result = array("rowCount" => $query_result->num_rows, "results" => $results_array)
+    echo json_encode($echo_result);
+
     $connection->close();
 ?>
