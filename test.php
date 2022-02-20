@@ -8,4 +8,19 @@
         echo "Connection FAILED: ", $connection->connect_error, PHP_EOL;
     }
     echo "Connection SUCCEEDED", PHP_EOL;
+    $sql = "SELECT TEST_COLUMN FROM TEST_TABLE";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0)
+    {
+        while ($row = $result->fetch_assoc())
+        {
+            echo $row["TEST_COLUMN"], PHP_EOL;
+        }
+    }
+    else
+    {
+        echo "NO RESULTS", PHP_EOL;
+    }
+    $connection->close();
 ?>
