@@ -17,9 +17,9 @@
         $results_array = array();
         while ($row = $result->fetch_assoc())
         {
-            $results_array[] = $row
+            $results_array[] = $row;
         }
-        echo json_encode($results_array)
+        echo json_encode($results_array);
     }
     else
     {
