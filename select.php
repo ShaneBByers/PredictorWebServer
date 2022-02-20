@@ -19,7 +19,7 @@
     {
         $results_array[] = $row;
     }
-    $echo_result = array("rowCount" => $query_result->num_rows, "results" => $results_array)
+    $echo_result = array("rowCount" => $query_result->num_rows, "results" => $results_array);
     echo json_encode($echo_result);
 
     $connection->close();
