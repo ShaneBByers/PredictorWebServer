@@ -1,14 +1,16 @@
 <?php
-    echo "select.php", PHP_EOL;
     $json_body = file_get_contents('php://input');
     $body = json_decode($json_body, true);
     $db_login = $body['databaseLogin'];
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
-    if ($connection->connect_error)
+    if (!$connection->connect_error)
     {
-        echo "Connection FAILED: ", $connection->connect_error, PHP_EOL;
+        $connection_status = "SUCCESS"
     }
-    echo "Connection SUCCEEDED", PHP_EOL;
+    else
+    {
+        $connection_status = "FAILED"
+    }
     $sql = "SELECT * FROM " . $body['tableName'];
     $query_result = $connection->query($sql);
 
@@ -19,7 +21,10 @@
     {
         $results_array[] = $row;
     }
-    $echo_result = array("rowCount" => $query_result->num_rows, "results" => $results_array);
+    $echo_result = array("filename" => "select.php",
+                         "connectionStatus" =>
+                         "rowCount" => $query_result->num_rows,
+                         "results" => $results_array);
     echo json_encode($echo_result);
 
     $connection->close();
