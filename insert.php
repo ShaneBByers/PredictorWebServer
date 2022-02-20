@@ -5,22 +5,32 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $connection_status = "SUCCESS";
+        $sql = "INSERT INTO " . $body['tableName'] . " (";
+        foreach ($body['columns'] as $column)
+        {
+            $sql = $sql . $column . ", ";
+        }
+        $sql = rtrim($sql, ", ");
+        $sql = $sql . ") VALUES ";
+        foreach ($body['values'] as $value)
+        {
+            $sql = $sql . "(";
+            foreach ($body['columns'] as $column)
+            {
+                $sql = $sql . $value[$column] . ", ";
+            }
+            $sql = rtrim($sql, ", ");
+            $sql = $sql . "), ";
+        }
+        $sql = rtrim($sql, ", ");
+        
+        $query_result = $connection->query($sql);
+        
+        echo json_encode($connection->affected_rows);
     }
     else
     {
-        $connection_status = "FAILED";
+        echo $connection->connect_error;
     }
-    $sql = "INSERT INTO " . $body['tableName'] . " VALUES (10), (20), (30)";
-    $query_result = $connection->query($sql);
-
-    $row_count = $connection->affected_rows;
-
-    $echo_result = array("filename" => "insert.php",
-                         "connectionStatus" => $connection_status,
-                         "rowCount" => $row_count,
-                         "insertSuccess" => $query_result);
-    echo json_encode($echo_result);
-
     $connection->close();
 ?>
