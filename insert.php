@@ -14,7 +14,7 @@
     $sql = "INSERT INTO " . $body['tableName'] . " VALUES (10), (20), (30)";
     $query_result = $connection->query($sql);
 
-    $row_count = mysql_affected_rows();
+    $row_count = $connection->affected_rows;
 
     $echo_result = array("filename" => "insert.php",
                          "connectionStatus" => $connection_status,
