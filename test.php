@@ -1,5 +1,5 @@
 <?php
-    echo "TEST.PHP", PHP_EOL;
+    echo "test.php", PHP_EOL;
     $json_body = file_get_contents('php://input');
     $body = json_decode($json_body, true);
     $connection = new mysqli($body['serverName'], $body['username'], $body['password'], $body['databaseName']);
