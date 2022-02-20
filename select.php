@@ -14,10 +14,12 @@
 
     if ($result->num_rows > 0)
     {
-        while ($row = $result->fetch_row())
+        $results_array = array();
+        while ($row = $result->fetch_assoc())
         {
-            echo $row[0], PHP_EOL;
+            $results_array[] = $row
         }
+        echo json_encode($results_array)
     }
     else
     {
