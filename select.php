@@ -5,27 +5,36 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $connection_status = "SUCCESS";
+        $sql = "SELECT ";
+        if ($body['columns'])
+        {
+            $sql = $sql . "(";
+            foreach ($body['columns'] as $column)
+            {
+                $sql = $sql . $column . ", ";
+            }
+            $sql = rtrim($sql, ", ");
+            $sql = $sql . ")";
+        }
+        else
+        {
+            $sql = $sql . "*";
+        }
+        $sql = $sql . " FROM " . $body['tableName'];
+        $query_result = $connection->query($sql);
+        
+        $row_count = $query_result->num_rows;
+        
+        $results_array = array();
+        while ($row = $query_result->fetch_assoc())
+        {
+            $results_array[] = $row;
+        }
+        echo json_encode($results_array);
     }
     else
     {
-        $connection_status = "FAILED";
+        echo $connection->connect_error;
     }
-    $sql = "SELECT * FROM " . $body['tableName'];
-    $query_result = $connection->query($sql);
-
-    $row_count = $query_result->num_rows;
-
-    $results_array = array();
-    while ($row = $query_result->fetch_assoc())
-    {
-        $results_array[] = $row;
-    }
-    $echo_result = array("filename" => "select.php",
-                         "connectionStatus" => $connection_status,
-                         "rowCount" => $query_result->num_rows,
-                         "results" => $results_array);
-    echo json_encode($echo_result);
-
     $connection->close();
 ?>
