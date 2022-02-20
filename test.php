@@ -9,7 +9,7 @@
     }
     echo "Connection SUCCEEDED", PHP_EOL;
     $sql = "SELECT TEST_COLUMN FROM TEST_TABLE";
-    $result = $conn->query($sql);
+    $result = $connection->query($sql);
 
     if ($result->num_rows > 0)
     {
