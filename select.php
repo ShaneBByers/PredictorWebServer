@@ -5,11 +5,11 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $connection_status = "SUCCESS"
+        $connection_status = "SUCCESS";
     }
     else
     {
-        $connection_status = "FAILED"
+        $connection_status = "FAILED";
     }
     $sql = "SELECT * FROM " . $body['tableName'];
     $query_result = $connection->query($sql);
@@ -22,7 +22,7 @@
         $results_array[] = $row;
     }
     $echo_result = array("filename" => "select.php",
-                         "connectionStatus" =>
+                         "connectionStatus" => $connection_status,
                          "rowCount" => $query_result->num_rows,
                          "results" => $results_array);
     echo json_encode($echo_result);
