@@ -7,22 +7,18 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		43B1EC8F277C34EB003BFE5D /* test.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = test.php; sourceTree = "<group>"; };
 		43BF768E27C1B20B00CD9874 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		43BF769C27C1D91200CD9874 /* select.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = select.php; sourceTree = "<group>"; };
-		43BF76A127C1ECC400CD9874 /* echo.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = echo.php; sourceTree = "<group>"; };
-		43BF76AB27C29FE900CD9874 /* insert.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = insert.php; sourceTree = "<group>"; };
+		43BF76AB27C29FE900CD9874 /* transaction.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = transaction.php; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		43B1EC7D277C3279003BFE5D = {
 			isa = PBXGroup;
 			children = (
-				43BF76AB27C29FE900CD9874 /* insert.php */,
-				43BF76A127C1ECC400CD9874 /* echo.php */,
+				43BF76AB27C29FE900CD9874 /* transaction.php */,
 				43BF769C27C1D91200CD9874 /* select.php */,
 				43BF768E27C1B20B00CD9874 /* index.html */,
-				43B1EC8F277C34EB003BFE5D /* test.php */,
 			);
 			sourceTree = "<group>";
 		};
