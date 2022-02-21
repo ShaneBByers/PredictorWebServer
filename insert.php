@@ -5,28 +5,9 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $sql = "INSERT INTO " . $body['tableName'] . " (";
-        foreach ($body['columns'] as $column)
-        {
-            $sql = $sql . $column . ", ";
-        }
-        $sql = rtrim($sql, ", ");
-        $sql = $sql . ") VALUES ";
-        foreach ($body['values'] as $value)
-        {
-            $sql = $sql . "(";
-            foreach ($body['columns'] as $column)
-            {
-                $sql = $sql . $value[$column] . ", ";
-            }
-            $sql = rtrim($sql, ", ");
-            $sql = $sql . "), ";
-        }
-        $sql = rtrim($sql, ", ");
+        $query_result = $connection->query($body['query']);
         
-        $query_result = $connection->query($sql);
-        
-        echo json_encode($connection->affected_rows);
+        echo $connection->affected_rows;
     }
     else
     {

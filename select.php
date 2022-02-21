@@ -5,23 +5,7 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $sql = "SELECT ";
-        if (array_key_exists('columns', $body))
-        {
-            $sql = $sql . "(";
-            foreach ($body['columns'] as $column)
-            {
-                $sql = $sql . $column . ", ";
-            }
-            $sql = rtrim($sql, ", ");
-            $sql = $sql . ")";
-        }
-        else
-        {
-            $sql = $sql . "*";
-        }
-        $sql = $sql . " FROM " . $body['tableName'];
-        $query_result = $connection->query($sql);
+        $query_result = $connection->query($body['query']);
         
         $row_count = $query_result->num_rows;
         
