@@ -5,8 +5,20 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $query_result = $connection->query($body['query']);
-        
+        try
+        {
+            $connection->beginTransaction();
+            foreach ($body['queryList'] as $query)
+            {
+                $connection->query($query);
+            }
+            $connection->commit();
+        }
+        catch (\Throwable $e)
+        {
+            $connection->rollback();
+            echo $e;
+        }
         echo $connection->affected_rows;
     }
     else
