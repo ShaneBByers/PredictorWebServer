@@ -7,7 +7,7 @@
     {
         try
         {
-            $connection->beginTransaction();
+            $connection->begin_transaction();
             foreach ($body['queryList'] as $query)
             {
                 $connection->query($query);
