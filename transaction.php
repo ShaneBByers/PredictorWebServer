@@ -5,12 +5,14 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
+        $row_count = 0;
         try
         {
             $connection->begin_transaction();
             foreach ($body['queryList'] as $query)
             {
                 $connection->query($query);
+                $row_count = $row_count + $connection->affected_rows;
             }
             $connection->commit();
         }
@@ -19,7 +21,7 @@
             $connection->rollback();
             echo $e;
         }
-        echo $connection->affected_rows;
+        echo $row_count;
     }
     else
     {
