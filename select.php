@@ -5,7 +5,7 @@
     $connection = new mysqli($db_login['serverName'], $db_login['username'], $db_login['password'], $db_login['databaseName']);
     if (!$connection->connect_error)
     {
-        $query_result = $connection->query($body['query']);
+        $query_result = $connection->query($body['queryList'][0]);
         
         $row_count = $query_result->num_rows;
         
